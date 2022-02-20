@@ -12,7 +12,9 @@ export default function Navbar() {
       <ul>
         <li>
           <Link href='/' passHref>
-            <button className='btn-logo'>NEXT</button>
+            <a>
+              <button className='btn-logo'>NEXT</button>
+            </a>
           </Link>
         </li>
 
@@ -21,17 +23,21 @@ export default function Navbar() {
           <>
             <li className='push-left'>
               <Link href='admin' passHref>
-                <button className='btn-blue'>Write Posts</button>
+                <a>
+                  <button className='btn-blue'>Write Posts</button>
+                </a>
               </Link>
             </li>
             <li>
               <Link href={`/${username}`} passHref>
-                <Image
-                  src={'/google.png'}
-                  alt='user icon'
-                  width={30}
-                  height={30}
-                />
+                <a>
+                  <Image
+                    src={user?.photoURL || '/hacker.png'}
+                    alt='user icon'
+                    width={50}
+                    height={50}
+                  />
+                </a>
               </Link>
             </li>
           </>
@@ -41,7 +47,9 @@ export default function Navbar() {
         {!username && (
           <>
             <Link href='/enter' passHref>
-              <button className='btn-blue'>Log in</button>
+              <a>
+                <button className='btn-blue'>Log in</button>
+              </a>
             </Link>
           </>
         )}
