@@ -1,4 +1,4 @@
-// was from 'firebase/app' and so on, but imports are updated with adding 'compat' in between
+// was 'firebase/app' and so on, but imports are updated with adding 'compat' in between
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
