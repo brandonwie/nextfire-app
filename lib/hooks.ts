@@ -8,17 +8,17 @@ export function useUserData() {
   const [username, setUsername] = useState(null);
 
   useEffect(() => {
-    console.log('user', user);
+    console.log('[hooks] user:', user);
     let unsubscribe;
 
     if (user) {
       const ref = firestore.collection('users').doc(user.uid);
 
-      console.log('ref', ref);
+      console.log('[hooks] ref:', ref);
 
       unsubscribe = ref.onSnapshot((doc) => {
-        console.log('doc.onSnapshot', doc);
-        console.log('doc.data()', doc.data());
+        console.log('ref.onSnapshot - doc:', doc);
+        console.log('doc.data():', doc.data());
         setUsername(doc.data()?.username);
       });
     } else {

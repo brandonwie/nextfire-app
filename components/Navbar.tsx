@@ -22,7 +22,7 @@ export default function Navbar() {
         {username && (
           <>
             <li className='push-left'>
-              <Link href='admin' passHref>
+              <Link href='/admin' passHref>
                 <a>
                   <button className='btn-blue'>Write Posts</button>
                 </a>
