@@ -1,5 +1,5 @@
 import PostFeed from '@components/PostFeed';
-// import Metatags from '@components/Metatags';
+import MetaTags from '@components/MetaTags';
 import Loader from '@components/Loader';
 import { firestore, fromMillis, postToJSON } from '@lib/firebase';
 
@@ -57,7 +57,10 @@ export default function Home(props) {
 
   return (
     <main>
-      {/* <Metatags title="Home Page" description="Get the latest posts on our site" /> */}
+      <MetaTags
+        title='Home Page'
+        description='Get the latest posts on our site'
+      />
 
       <div className='card card-info'>
         <h2>💡 Welcome to Brandon&apos;s social blog! 👨🏻‍💻</h2>
