@@ -63,10 +63,10 @@ export default function Home(props) {
       />
 
       <div className='card card-info'>
-        <h2>💡 Welcome to Brandon&apos;s social blog! 👨🏻‍💻</h2>
+        <h2>💡 Welcome to Brandon Wie&apos;s social blog!👨🏻‍💻</h2>
         <p>
           This app is built with Next.js and Firebase and is loosely inspired by
-          Dev.to. with a fireship.io course
+          Dev.to.
         </p>
         <p>
           Sign up for an 👨‍🎤 account, ✍️ write posts, then 💗 heart content
