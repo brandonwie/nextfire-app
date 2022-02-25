@@ -45,7 +45,7 @@ function CreateNewPost() {
   const { username } = useContext(UserContext);
   const [title, setTitle] = useState('');
 
-  // Ensure slug is URL safe
+  // Ensure slug is URL safe > strips out ?!/ characters
   const slug = encodeURI(kebabCase(title));
 
   // Validate length

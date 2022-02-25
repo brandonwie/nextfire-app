@@ -15,7 +15,6 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
-console.log(firebase.apps);
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
@@ -27,7 +26,7 @@ export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 // Firestore exports
 export const firestore = firebase.firestore();
 export const fromMillis = firebase.firestore.Timestamp.fromMillis;
-export const increment = firebase.firestore.FieldValue.increment;
+export const increment = firebase.firestore.FieldValue.increment; // increment(1) heart count
 export const serverTimestamp = firebase.firestore.FieldValue.serverTimestamp;
 
 // Storage exports

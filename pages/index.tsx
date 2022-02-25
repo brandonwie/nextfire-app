@@ -60,15 +60,19 @@ export default function Home(props) {
       {/* <Metatags title="Home Page" description="Get the latest posts on our site" /> */}
 
       <div className='card card-info'>
-        <h2>💡 Next.js + Firebase - The Full Course</h2>
+        <h2>💡 Welcome to Brandon&apos;s social blog! 👨🏻‍💻</h2>
         <p>
-          Welcome! This app is built with Next.js and Firebase and is loosely
-          inspired by Dev.to.
+          This app is built with Next.js and Firebase and is loosely inspired by
+          Dev.to. with a fireship.io course
         </p>
         <p>
           Sign up for an 👨‍🎤 account, ✍️ write posts, then 💗 heart content
           created by other users. All public content is server-rendered and
           search-engine optimized.
+        </p>
+        <p>
+          The firebase server is in free tier so please be gentle. You know what
+          I mean.🙆🏻‍♂️
         </p>
       </div>
 

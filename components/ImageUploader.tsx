@@ -4,9 +4,9 @@ import Loader from './Loader';
 
 // Uploads images to Firebase Storage
 export default function ImageUploader() {
-  const [uploading, setUploading] = useState(false);
+  const [uploading, setUploading] = useState(false); // actively being updating
   const [progress, setProgress] = useState(0);
-  const [downloadURL, setDownloadURL] = useState(null);
+  const [downloadURL, setDownloadURL] = useState(null); // when upload is complete
 
   // Creates a Firebase Upload Task
   const uploadFile = async (e) => {
@@ -18,6 +18,7 @@ export default function ImageUploader() {
     const ref = storage.ref(
       `uploads/${auth.currentUser.uid}/${Date.now()}.${extension}`
     );
+
     setUploading(true);
 
     // Starts the upload
