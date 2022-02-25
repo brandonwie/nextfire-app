@@ -1,20 +1,28 @@
-import Image from 'next/image';
-import { useContext, useState, useEffect, useCallback } from 'react';
+import { auth, firestore, googleAuthProvider } from '@lib/firebase';
+import { UserContext } from '@lib/context';
+import MetaTags from '@components/MetaTags';
+
+import { useEffect, useState, useCallback, useContext } from 'react';
 import debounce from 'lodash.debounce';
 
-import { UserContext } from '@lib/context';
-import { auth, firestore, googleAuthProvider } from '@lib/firebase';
-
-export default function EnterPage({}) {
+export default function Enter(props) {
   const { user, username } = useContext(UserContext);
+
   // 1. user signed out <SignInButton />
   // 2. user signed in, but missing username <UsernameForm />
   // 3. user signed in, has username <SignOutButton />
   return (
     <main>
-      {user && !username && <UsernameForm />}
-      {user && username && <SignOutButton />}
-      {!user && <SignInButton />}
+      <MetaTags title='Enter' description='Sign up for this amazing app!' />
+      {user ? (
+        !username ? (
+          <UsernameForm />
+        ) : (
+          <SignOutButton />
+        )
+      ) : (
+        <SignInButton />
+      )}
     </main>
   );
 }
@@ -26,10 +34,15 @@ function SignInButton() {
   };
 
   return (
-    <button className='btn-google' onClick={signInWithGoogle}>
-      <Image src={'/google.png'} alt='google logo' width={30} height={30} />
-      <span style={{ marginLeft: '5px' }}>Sign in with Google</span>
-    </button>
+    <>
+      <button className='btn-google' onClick={signInWithGoogle}>
+        <img src={'/google.png'} width='30px' /> Sign in with Google
+      </button>
+      {/* auth condition setting is not done */}
+      {/* <button onClick={() => auth.signInAnonymously()}>
+        Sign in Anonymously
+      </button> */}
+    </>
   );
 }
 
@@ -38,6 +51,7 @@ function SignOutButton() {
   return <button onClick={() => auth.signOut()}>Sign Out</button>;
 }
 
+// Username form
 function UsernameForm() {
   const [formValue, setFormValue] = useState('');
   const [isValid, setIsValid] = useState(false);
@@ -87,7 +101,6 @@ function UsernameForm() {
 
   useEffect(() => {
     checkUsername(formValue);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formValue]);
 
   // Hit the database for username match after each debounced change
@@ -112,7 +125,7 @@ function UsernameForm() {
         <form onSubmit={onSubmit}>
           <input
             name='username'
-            placeholder='username'
+            placeholder='myname'
             value={formValue}
             onChange={onChange}
           />

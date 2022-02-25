@@ -1,65 +1,57 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useContext } from 'react';
-
 import { UserContext } from '@lib/context';
-import Head from 'next/head';
+import { auth } from '@lib/firebase';
 
+// Top navbar
 export default function Navbar() {
   const { user, username } = useContext(UserContext);
 
+  const router = useRouter();
+
+  const signOut = () => {
+    auth.signOut();
+    router.reload();
+  };
+
   return (
-    <>
-      <Head>
-        <title>Social Blog - Brandon Wie</title>
-      </Head>
-      <nav className='navbar'>
-        <ul>
+    <nav className='navbar'>
+      <ul>
+        <li>
+          <Link href='/'>
+            <button className='btn-logo'>NXT</button>
+          </Link>
+        </li>
+
+        {/* user is signed-in and has username */}
+        {username && (
+          <>
+            <li className='push-left'>
+              <button onClick={signOut}>Sign Out</button>
+            </li>
+            <li>
+              <Link href='/admin'>
+                <button className='btn-blue'>Write Posts</button>
+              </Link>
+            </li>
+            <li>
+              <Link href={`/${username}`}>
+                <img src={user?.photoURL || '/hacker.png'} />
+              </Link>
+            </li>
+          </>
+        )}
+
+        {/* user is not signed OR has not created username */}
+        {!username && (
           <li>
-            <Link href='/' passHref>
-              <a>
-                <button className='btn-logo'>BRND</button>
-              </a>
+            <Link href='/enter'>
+              <button className='btn-blue'>Log in</button>
             </Link>
           </li>
-
-          {/* user is signed-in and has username */}
-          {username && (
-            <>
-              <li className='push-left'>
-                <Link href='/admin' passHref>
-                  <a>
-                    <button className='btn-blue'>Write Posts</button>
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${username}`} passHref>
-                  <a>
-                    <Image
-                      src={user?.photoURL || '/hacker.png'}
-                      alt='user icon'
-                      width={50}
-                      height={50}
-                    />
-                  </a>
-                </Link>
-              </li>
-            </>
-          )}
-
-          {/* user is not signed OR has not created username */}
-          {!username && (
-            <>
-              <Link href='/enter' passHref>
-                <a>
-                  <button className='btn-blue'>Log in</button>
-                </a>
-              </Link>
-            </>
-          )}
-        </ul>
-      </nav>
-    </>
+        )}
+      </ul>
+    </nav>
   );
 }
